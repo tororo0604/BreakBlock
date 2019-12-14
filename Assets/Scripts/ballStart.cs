@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ballStart : MonoBehaviour {
+
+    public int ballCount = 0;
+
     // Start is called before the first frame update
     void Start () {
         //gameObject.GetComponent<Rigidbody> ().AddForce (1000f, 0f, 1000f);
@@ -16,6 +19,9 @@ public class ballStart : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        if(Input.GetKeyDown(KeyCode.Space)){
+            
+        }
     }
 
     void OnCollisionEnter (Collision col) {

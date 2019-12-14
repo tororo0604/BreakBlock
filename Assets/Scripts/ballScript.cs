@@ -15,7 +15,7 @@ public class ballScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         
-        if(Input.GetKey(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space)){
 //        if (Input.GetMouseButtonDown (0)) {
             Vector3 pp = GameObject.Find ("player").transform.position;
             Instantiate (ballPrefab,
