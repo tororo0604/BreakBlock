@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class ballScript : MonoBehaviour {
 
-    public GameObject ballPrefab;
-    public GameObject player;
+    public GameMaster gameMaster;
 
     // Start is called before the first frame update
     void Start () {
-
+        //gameObject.GetComponent<Rigidbody> ().AddForce (1000f, 0f, 1000f);
+        gameObject.GetComponent<Rigidbody> ().velocity
+         = new Vector3 ((Random.value - 0.5f) * 20f, 0f, 10f);
+        gameMaster.ballNum++;
     }
 
     // Update is called once per frame
     void Update () {
-        
-        if(Input.GetKeyDown(KeyCode.Space)){
-//        if (Input.GetMouseButtonDown (0)) {
-            Vector3 pp = GameObject.Find ("player").transform.position;
-            Instantiate (ballPrefab,
-                new Vector3 (pp.x, pp.y - 0.2f, pp.z + 1),
-                Quaternion.identity);
-            //           gameObject.GetComponent<Rigidbody> ().AddForce (1000f, 0f, 1000f);
-            //gameObject.GetComponent<Rigidbody> ().velocity = new Vector3 (10f, 0f, 10f);
+        Vector3 tmp = this.transform.position;
+        if (tmp.y < -1) {
+            gameMaster.ballNum--;
+            gameMaster.ballLife--;
+            Destroy (gameObject);
         }
     }
 
+    void OnCollisionEnter (Collision col) {
+        if (col.gameObject.tag == "deadZone") {
+            gameMaster.ballNum--;
+            gameMaster.ballLife--;
+            Destroy (gameObject);
+        }
+    }
 
 }
