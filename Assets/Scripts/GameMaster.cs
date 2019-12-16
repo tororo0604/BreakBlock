@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
     public int blockNum;
@@ -14,6 +15,25 @@ public class GameMaster : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if(ballLife == 0 || blockNum == 0){
+            GameOver();
+        }
 
+        if(Input.GetKeyDown(KeyCode.R)){
+            Reset();
+        }
+        if(Input.GetKeyDown(KeyCode.T)){
+            GoTitle();
+        }
+    }
+
+    public void GameOver() {
+        SceneManager.LoadScene("ResultScene");
+    }
+    public void Reset(){
+        SceneManager.LoadScene("GameScene");
+    }
+    public void GoTitle(){
+        SceneManager.LoadScene("TitleScene");
     }
 }

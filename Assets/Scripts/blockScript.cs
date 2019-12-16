@@ -5,6 +5,7 @@ using UnityEngine;
 public class blockScript : MonoBehaviour {
 
     public GameMaster gameMaster;
+    public ScoreScript scoreScript;
 
     // Start is called before the first frame update
     void Start () {
@@ -19,6 +20,7 @@ public class blockScript : MonoBehaviour {
     void OnCollisionEnter (Collision collision) {
         //       if(collision.gameObject.tag == "ball"){
         gameMaster.blockNum--;
+        scoreScript.addScore();
         Destroy (gameObject);
         //       }
     }
